@@ -1,0 +1,20 @@
+# First make initial image of the SPAM o/p uv data; e.g.,
+
+wsclean -name image_0 -data-column DATA \
+  -size 8192 8192 -scale 1.0asec -multiscale \
+  -niter 200000 -mgain 0.5 -weighting-rank-filter 3 \
+  -auto-threshold 0.3 -auto-mask 3 -join-channels -channels-out 6 \
+  -weight briggs 0 -pol RR part1.ms part2.ms part3.ms part4.ms part5.ms part6.ms
+  
+
+Then, RUN the 'SPAM_out_MS_selfcal.py' in CASA
+
+After that, again image with WSClean and see any imporvement
+
+wsclean -name selfcal_1 -data-column CORRECTED_DATA \
+  -size 8192 8192 -scale 1.0asec -multiscale \
+  -niter 200000 -mgain 0.5 -weighting-rank-filter 3 \
+  -auto-threshold 0.3 -auto-mask 3 -join-channels -channels-out 6 \
+  -weight briggs 0 -pol RR part1.ms part2.ms part3.ms part4.ms part5.ms part6.ms
+
+
